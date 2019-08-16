@@ -1,0 +1,10 @@
+#!/bin/sh
+. /opt/farm/scripts/init
+
+if [ "$OSVER" = "debian-buster" ]; then
+	arch=`/opt/farm/ext/system/detect-architecture.sh`
+	path=/opt/farm/ext/binary-ssh-client/bin/ssh_debian_6.7p1-5+deb8u8/$arch
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$path/lib  "$path/ssh" "$@"
+else
+	ssh "$@"
+fi
