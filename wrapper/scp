@@ -4,7 +4,7 @@
 if [ "$OSVER" = "debian-buster" ] && [ ! -s /etc/local/.config/ssh-compat.disable ]; then
 	arch=`/opt/farm/ext/system/detect-architecture.sh`
 	path=/opt/farm/ext/binary-ssh-client/bin/ssh_debian_6.7p1-5+deb8u8/$arch
-	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$path/lib  "$path/ssh" "$@"
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$path/lib  PATH=$path:$PATH  scp "$@"
 else
-	ssh "$@"
+	scp "$@"
 fi
